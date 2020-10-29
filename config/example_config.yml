@@ -1,0 +1,10 @@
+model: seresnet34
+sched: cosine
+opt_eps: 1e-5
+epochs: 150
+warmup-epoch: 5
+lr: 0.4
+reprob: 0.5
+remode: pixel
+batch-size: 256
+j: 4

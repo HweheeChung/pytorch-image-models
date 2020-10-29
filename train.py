@@ -98,7 +98,7 @@ parser.add_argument('-vb', '--validation-batch-size-multiplier', type=int, defau
 # Optimizer parameters
 parser.add_argument('--opt', default='sgd', type=str, metavar='OPTIMIZER',
                     help='Optimizer (default: "sgd"')
-parser.add_argument('--opt-eps', default=None, type=float, metavar='EPSILON',
+parser.add_argument('--opt_eps', default=None, type=float, metavar='EPSILON',
                     help='Optimizer Epsilon (default: None, use opt default)')
 parser.add_argument('--opt-betas', default=None, type=float, nargs='+', metavar='BETA',
                     help='Optimizer Betas (default: None, use opt default)')
@@ -277,6 +277,7 @@ def _parse_args():
 def main():
     setup_default_logging()
     args, args_text = _parse_args()
+    import ipdb; ipdb.set_trace()  # XXX DEBUG
 
     args.prefetcher = not args.no_prefetcher
     args.distributed = False
@@ -325,6 +326,7 @@ def main():
         _logger.info('Model %s created, param count: %d' %
                      (args.model, sum([m.numel() for m in model.parameters()])))
 
+    # vars(args) -> args to dictionary
     data_config = resolve_data_config(vars(args), model=model, verbose=args.local_rank == 0)
 
     num_aug_splits = 0
